@@ -6,8 +6,7 @@ class RoomList extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      rooms: [],
-      newRoomName: ''
+      rooms: []
     };
 
     this.roomsRef = this.props.firebase.database().ref('rooms');
@@ -15,21 +14,26 @@ class RoomList extends Component {
 
   componentDidMount() {
     this.roomsRef.on('child_added', snapshot => {
-      const rooms = snapshot.val();
-      rooms.key = snapshot.key;
-      console.log("Added room: " + rooms.key);
-      this.setState({ rooms: this.state.rooms.concat( rooms ) })
+      const room = snapshot.val();
+      room.key = snapshot.key;
+      console.log("Added room: " + room.key);
+      this.setState({ rooms: this.state.rooms.concat( room ) })
     });
   }
 
   render() {
     return (
-      <section className="room-list">
-            {this.state.rooms.map( room =>
-                <li key={room.key} >
-                  <button className="room-name">{room.name}</button>
-                </li>
-            )}
+      <section>
+      <h1>Bloc Chat</h1>
+        <section className="room-list">
+          {
+            this.state.rooms.map((room, index) =>
+                  <div key={index}>
+                    <h3>{room.name}</h3>
+                  </div>
+              )
+          }
+         </section>
        </section>
       );
      }

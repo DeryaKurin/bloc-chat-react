@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { Route, Link } from 'react-router-dom';
-import { BrowserRouter } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
+// import { BrowserRouter } from 'react-router-dom';
 import * as firebase from 'firebase';
 import './App.css';
 import RoomList from './components/RoomList';
