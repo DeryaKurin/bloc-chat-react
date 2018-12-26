@@ -22,9 +22,9 @@ class RoomList extends Component {
   }
 
   createRoom(newRoomName) {
-    if (!this.props.user || !newRoomName) { return }
+    if (!newRoomName) { return }
     this.roomsRef.push({
-      name: newRoomName,
+      name: newRoomName
     });
     this.setState({ newRoomName: '' });
   }
