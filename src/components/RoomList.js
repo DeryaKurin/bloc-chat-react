@@ -33,9 +33,6 @@ class RoomList extends Component {
     this.setState({newRoomName: e.target.value });
   }
 
-
-
-
   render() {
     return (
       <section>
