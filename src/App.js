@@ -38,7 +38,7 @@ class App extends Component {
       <div className="App">
         <RoomList
         firebase = { firebase }
-        setRoom = { () => this.setRoom() }
+        setRoom = { (e) => this.setRoom(e) }
          />
         <MessageList
         firebase = { firebase }
