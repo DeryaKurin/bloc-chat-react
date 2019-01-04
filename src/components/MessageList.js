@@ -47,7 +47,6 @@ class MessageList extends Component {
            key={index}>
              {message.content}
          </div>
-
        )}
 
         </div>

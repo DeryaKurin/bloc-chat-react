@@ -39,8 +39,6 @@ class RoomList extends Component {
     this.props.setRoom(room);
   }
 
-
-
   render() {
     return (
       <section>
