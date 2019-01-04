@@ -21,7 +21,7 @@ class MessageList extends Component {
   }
 
   createMessage(newMessageName) {
-    if (!newMessageName) {
+    if (!this.state.newMessageName) {
       return
     }
     this.messagesRef.push({
@@ -40,9 +40,9 @@ class MessageList extends Component {
 
   render() {
     return (
-      (this.props.activeRoomId !== "") ?
+      (this.props.activeRoom !== "") ?
         <div className="message-list" >
-        {this.state.messages.filter ((message, index) => this.props.activeRoomId.key === message.roomId).map ((message, index) =>
+        {this.state.messages.filter ((message, index) => this.props.activeRoom.key === message.room).map ((message, index) =>
          <div className="message-id"
            key={index}>
              {message.content}
