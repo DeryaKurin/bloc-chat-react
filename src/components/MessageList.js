@@ -29,7 +29,7 @@ class MessageList extends Component {
       username: this.props.username,
       content: this.state.newMessageName,
       sentAt: this.props.firebase.database.ServerValue.TIMESTAMP,
-      roomId: this.props.activeRoomId.key,
+      roomId: this.props.activeRoom.key,
     });
     this.setState({ newMessageName: '' });
   }
@@ -46,6 +46,7 @@ class MessageList extends Component {
           <div className="message-list">
         {
           this.state.messages.filter((message, index) =>
+
           this.props.activeRoom.key === message.roomId).map((message, index) =>
            <li className="messageId"
                 key = {index}>
