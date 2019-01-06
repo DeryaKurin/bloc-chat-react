@@ -20,7 +20,8 @@ class MessageList extends Component {
     });
   }
 
-  createMessage(newMessageName) {
+  createMessage(e) {
+    e.preventDefault();
     if (!this.state.newMessageName) {
       return
     }
@@ -28,7 +29,7 @@ class MessageList extends Component {
       username: this.props.username,
       content: this.state.newMessageName,
       sentAt: this.props.firebase.database.ServerValue.TIMESTAMP,
-      roomId: this.props.activeRoom.key,
+      roomId: this.props.activeRoomId.key,
     });
     this.setState({ newMessageName: '' });
   }
@@ -40,17 +41,21 @@ class MessageList extends Component {
 
   render() {
     return (
-      (this.props.activeRoom !== "") ?
-        <div className="message-list" >
-        {this.state.messages.filter ((message, index) => this.props.activeRoom.key === message.room).map ((message, index) =>
-         <div className="message-id"
-           key={index}>
-             {message.content}
-         </div>
-       )}
 
+      (this.props.activeRoom !== "") ?
+          <div className="message-list">
+        {
+          this.state.messages.filter((message, index) =>
+          this.props.activeRoom.key === message.roomId).map((message, index) =>
+           <li className="messageId"
+                key = {index}>
+                {message.content}
+           </li>
+         )
+       }
         </div>
-      : <div>Please Select Your Room</div>
+       :  <div>Please Select Your Room</div>
+
     );
   }
 }

@@ -21,7 +21,8 @@ class RoomList extends Component {
     });
   }
 
-  createRoom(newRoomName) {
+  createRoom(e) {
+    e.preventDefault();
     if (!this.state.newRoomName) {
       return
     }
@@ -35,9 +36,6 @@ class RoomList extends Component {
     this.setState({newRoomName: e.target.value });
   }
 
-  handleRoomClick(room) {
-    this.props.setRoom(room);
-  }
 
   render() {
     return (
@@ -46,11 +44,11 @@ class RoomList extends Component {
         <section className="room-list">
           {
             this.state.rooms.map((room, index) =>
-                  <div
+                  <li
                     key={index}
-                    onClick = {(room) => this.props.setRoom(room)}  >
-                    <h3>{room.name}</h3>
-                  </div>
+                    onClick = {(roomId) => this.props.setRoom(roomId)}  >
+                     {room.name}
+                  </li>
               )
           }
          </section>
