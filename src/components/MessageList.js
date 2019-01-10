@@ -20,26 +20,12 @@ class MessageList extends Component {
     });
   }
 
-  createMessage(e) {
-    e.preventDefault();
-    if (!this.state.newMessageName) {
-      return
-    }
-    this.messagesRef.push({
-      username: this.props.username,
-      content: this.state.newMessageName,
-      sentAt: this.props.firebase.database.ServerValue.TIMESTAMP,
-      roomId: this.props.activeRoom.key,
-    });
-    this.setState({ newMessageName: '' });
-  }
-
-
   handleChange(e) {
     this.setState({ newMessageName: e.target.value });
   }
 
   render() {
+    // const currentUser = (this.props.user === null) ? "Guest" : {this.props.user.displayName };
     return (
 
       (this.props.activeRoom !== "") ?
