@@ -30,18 +30,21 @@ class User extends Component {
   }
 
   render () {
-    const userName = (this.props.user === null) ? "Guest"
-    :
-    this.props.user.displayName;
     return (
-        (this.userName === "Guest" || null ) ?
-            <button onClick={this.signIn}>
-             Sign In
-            </button>
-           :
-            <button onClick={this.signOut}>
-             Sign Out
-            </button>
+        this.props.user ?
+            <div>
+             <p>Username: {this.props.user.displayName}</p>   
+              <button onClick={this.signOut}>
+                Sign Out
+              </button>
+             </div>
+            :
+            <div>
+              <p>Username: Guest</p>
+              <button onClick={this.signIn}>
+                Sign In
+              </button>
+            </div>
      );
    }
  }
