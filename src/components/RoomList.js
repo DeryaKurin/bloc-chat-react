@@ -22,7 +22,6 @@ class RoomList extends Component {
   }
 
   createRoom(e) {
-    e.preventDefault();
     if (!this.state.newRoomName) {
       return
     }
