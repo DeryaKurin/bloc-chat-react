@@ -31,13 +31,14 @@ class MessageList extends Component {
     this.messagesRef.push({
       content: this.state.newMessageContent,
       roomId: this.props.activeRoom.key,
-      sentAt: "firebase.database.ServerValue.TIMESTAMP",
+      sentAt: this.props.firebase.database.ServerValue.TIMESTAMP,
       userName: this.props.userName
     });
     this.setState({ newMessageContent: '' });
   }
 
   render() {
+    console.log(this.state.messages.length);
     return (
       <section>
       {

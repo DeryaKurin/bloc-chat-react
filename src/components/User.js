@@ -31,21 +31,15 @@ class User extends Component {
 
   render () {
     return (
-        this.props.user ?
             <div>
-             <p>Username: {this.props.user.displayName}</p>   
-              <button onClick={this.signOut}>
-                Sign Out
+             <p>Username: { this.props.user ? this.props.user.displayName : "Guest" }</p>
+              <button onClick={this.props.user ? this.signOut : this.signIn }>
+                {
+                  this.props.user ? "Sign Out" : "Sign In"
+                }
               </button>
              </div>
-            :
-            <div>
-              <p>Username: Guest</p>
-              <button onClick={this.signIn}>
-                Sign In
-              </button>
-            </div>
-     );
+     )
    }
  }
 
