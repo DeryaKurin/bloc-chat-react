@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import * as firebase from 'firebase';
+import speechbubble from './speechbubble.svg';
 import './App.css';
+import { Container, Row, Col, Clearfix } from 'react-bootstrap';
 import RoomList from './components/RoomList';
 import MessageList from './components/MessageList';
 import User from './components/User';
@@ -40,24 +42,42 @@ class App extends Component {
 
 
 
+
   render() {
     return (
       <div className="App">
-        <RoomList
-        firebase = { firebase }
-        setRoom = { (room) => this.setRoom(room) }
-         />
-        <MessageList
-        firebase = { firebase }
-        activeRoom = { this.state.activeRoom }
-        userName = { this.state.user ? this.state.user.displayName : "Guest" }
-         />
-         <User
-         firebase = { firebase }
-         setUser = { (user) => this.setUser(user) }
-         user = { this.state.user }
-         />
-       </div>
+      <header className="App-header">
+        <nav>
+          <ul>
+            <li id="logo-name"><img src={speechbubble} style={{height:"4.6rem"}} className="App-logo" alt="logo" /><h1 className="App-title">Chit Chat</h1></li>
+            <li id="user-name">
+              <User
+              firebase = { firebase }
+              setUser = { (user) => this.setUser(user) }
+              user = { this.state.user }
+              />
+            </li>
+          </ul>
+        </nav>
+      </header>
+      <Container>
+        <Row className="show-grid">
+          <Col className="Clearfix" xs = {12} md lg = {5}>
+            <RoomList
+              firebase = { firebase }
+              setRoom = { (room) => this.setRoom(room) }
+            />
+          </Col>
+          <Col className="Clearfix"xs = {12} md lg = {7}>
+            <MessageList
+              firebase = { firebase }
+              activeRoom = { this.state.activeRoom }
+              userName = { this.state.user ? this.state.user.displayName : "Guest" }
+            />
+          </Col>
+        </Row>
+       </Container>
+      </div>
     );
   }
 }

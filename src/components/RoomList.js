@@ -1,5 +1,7 @@
 import React, {Component} from 'react';
 import './roomlist.css';
+import { Container, Row, Col, Clearfix } from 'react-bootstrap';
+import { Button } from 'react-bootstrap';
 
 
 class RoomList extends Component {
@@ -15,9 +17,9 @@ class RoomList extends Component {
 
   componentDidMount() {
     this.roomsRef.on('child_added', snapshot => {
-      const room = snapshot.val();
-      room.key = snapshot.key;
-      this.setState({ rooms: this.state.rooms.concat( room ) })
+      const addedRoom = snapshot.val();
+      addedRoom.key = snapshot.key;
+      this.setState({ rooms: this.state.rooms.concat( addedRoom ) })
     });
   }
 
@@ -31,6 +33,7 @@ class RoomList extends Component {
     this.setState({ newRoomName: '' });
   }
 
+
   handleChange(e) {
     this.setState({newRoomName: e.target.value });
   }
@@ -39,27 +42,34 @@ class RoomList extends Component {
   render() {
     return (
       <section>
-      <h1>Bloc Chat</h1>
-        <section className="room-list">
-          {
-            this.state.rooms.map((room, index) =>
-                  <li
-                    key={index}
-                    onClick = {() => this.props.setRoom(room)} >
-                     {room.name}
-                  </li>
-              )
-          }
-         </section>
-         <form id="create-room"
-         onSubmit={(e) => { e.preventDefault();
-         this.createRoom(this.state.newRoomName)}} >
-           <label>
-             Room Name:
-            <input type="text" name="newRoomName" value={this.state.newRoomName} onChange={this.handleChange.bind(this)} placeholder="Create a new room" />
-          </label>
-          <input type="submit" value="Submit" />
-        </form>
+      <Container>
+        <Row className="list-background">
+          <Col xs={6} md={3}>
+            <section className="room-list">
+            <h2>Select a Chat Room</h2>
+              {
+                this.state.rooms.map((room, index) =>
+                      <li
+                        key={index}
+                        onClick = {() => this.props.setRoom(room)} >
+                         {room.name}
+                      </li>
+                )
+              }
+             </section>
+             <section className = "new-room">
+               <form id="create-room"
+               onSubmit={(e) => { e.preventDefault();
+               this.createRoom(this.state.newRoomName)}} >
+                 <label>
+                  <input type="text" name="newRoomName" value={this.state.newRoomName} onChange={this.handleChange.bind(this)} placeholder="Create a New Room" />
+                </label>
+                <Button variant="info" type="submit">Add</Button>
+              </form>
+             </section>
+          </Col>
+        </Row>
+        </Container>
        </section>
       );
      }

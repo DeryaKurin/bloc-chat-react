@@ -1,5 +1,8 @@
 import React, {Component} from 'react';
 import './messagelist.css';
+import { ListGroup, Button } from 'react-bootstrap';
+import Moment from 'react-moment';
+import 'moment-timezone';
 
 
 class MessageList extends Component {
@@ -40,32 +43,47 @@ class MessageList extends Component {
   render() {
     console.log(this.state.messages.length);
     return (
-      <section>
+      <section className="messages">
       {
-      (this.props.activeRoom !== "") ?
-          <div className="message-list">
-        {
-          this.state.messages.filter((message, index) =>
+      (this.props.activeRoom == "") ?
+          <div></div> :
 
-          this.props.activeRoom.key === message.roomId).map((message, index) =>
-           <li className="messageId"
-                key = {index}>
-                {message.content}
-           </li>
-         )
+            <div>
+              <h2>{this.props.activeRoom.name}</h2>
+              <ListGroup>
+              <div className="message-list">
+              {
+              this.state.messages.filter((message, index) =>
+              this.props.activeRoom.key === message.roomId).map((message, index) =>
+
+               <ListGroup.Item className="messageId"
+                    key = {index}>
+                    <div className="user-style">
+                      {message.userName}
+                    </div>
+                    <div className="list-item">
+                      <div>
+                      {message.content}
+                      </div>
+                      <Moment element="span" format="MM/DD/YY hh:mm A" className="sent-at">
+  	  	               { message.sentAt }
+  	                	</Moment>
+                    </div>
+               </ListGroup.Item>
+             )
+             }
+             </div>
+             </ListGroup>
+           <form id="create-message"
+             onSubmit={(e) => { e.preventDefault();
+             this.createMessage(this.state.newMessageContent)}} >
+             <label>
+              <input type="text" style={{width:"20rem"}} name="newMessage" value={this.state.newMessageContent} onChange={this.handleChange.bind(this)} placeholder="Write a message here" />
+             </label>
+             <Button variant="info" type="submit">Send</Button>
+           </form>
+           </div>
          }
-        </div>
-       :  <div>Please Select Your Room</div>
-       }
-        <form id="create-message"
-         onSubmit={(e) => { e.preventDefault();
-         this.createMessage(this.state.newMessageContent)}} >
-         <label>
-           Message:
-          <input type="text" name="newMessage" value={this.state.newMessageContent} onChange={this.handleChange.bind(this)} placeholder="Create a new message" />
-        </label>
-        <input type="submit" value="Submit" />
-      </form>
       </section>
     );
   }

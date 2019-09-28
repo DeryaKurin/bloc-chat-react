@@ -1,0 +1,8 @@
+.btn-primary, .btn-primary:hover, .btn-primary:active, .btn-primary:visited {
+  background-color: #8064A2 !important;
+  color: #70C5C5;
+}
+
+.header-user {
+  display: flex;
+}

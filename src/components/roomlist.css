@@ -1,8 +1,39 @@
 body {
   font-color: black;
+  color: white;
+}
+
+h2 {
+  font-size: 4rem;
+  color: #17566d;
+}
+
+.list-background {
+  width: 100vw;
+  padding: 4rem;
+  color: #47707f;
+  font-style: oblique;
+  font-weight: bold;
+  font-size: 1.8rem;
+  display: flex;
+  flex-direction: column;
 }
 
 .room-list li {
   list-style: none;
   padding: 2px;
+}
+
+.new-room {
+  margin-top: 2rem;
+}
+
+#create-room Button {
+  margin-left: 2rem;
+}
+
+#create-room input {
+  width:90%;
+  height: 38px;
+  font-size: 1.4rem;
 }
