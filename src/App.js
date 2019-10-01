@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import * as firebase from 'firebase';
 import speechbubble from './speechbubble.svg';
 import './App.css';
-import { Container, Row, Col, Clearfix } from 'react-bootstrap';
+import { Container, Row, Col } from 'react-bootstrap';
 import RoomList from './components/RoomList';
 import MessageList from './components/MessageList';
 import User from './components/User';

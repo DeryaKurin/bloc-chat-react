@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import './roomlist.css';
-import { Container, Row, Col, Clearfix } from 'react-bootstrap';
+import { Container, Row, Col } from 'react-bootstrap';
 import { Button } from 'react-bootstrap';
 
 
@@ -20,6 +20,7 @@ class RoomList extends Component {
       const addedRoom = snapshot.val();
       addedRoom.key = snapshot.key;
       this.setState({ rooms: this.state.rooms.concat( addedRoom ) })
+      console.log("WE ARE IN COMPONENT DID MOUNT");
     });
   }
 
@@ -31,11 +32,13 @@ class RoomList extends Component {
       name: this.state.newRoomName
     });
     this.setState({ newRoomName: '' });
+    console.log("NEW ROOM CREATED!");
   }
 
 
   handleChange(e) {
     this.setState({newRoomName: e.target.value });
+    console.log("IN THE HANDLE CHANGE");
   }
 
 

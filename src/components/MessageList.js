@@ -45,7 +45,7 @@ class MessageList extends Component {
     return (
       <section className="messages">
       {
-      (this.props.activeRoom == "") ?
+      (this.props.activeRoom === "") ?
           <div></div> :
 
             <div>
